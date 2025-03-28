@@ -18,14 +18,14 @@ class Accounts(Base):
 
     def __init__(
             self,
-            evm_pk: str,
+            eth_pk: str,
             evm_address: str,
             proxy: str,
             email: str,
             user_agent: str,
     ) -> None:
         
-        self.evm_pk = evm_pk
+        self.evm_pk = eth_pk
         self.evm_address = evm_address
         self.proxy = proxy
         self.email = email

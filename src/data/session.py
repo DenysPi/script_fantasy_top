@@ -1,6 +1,6 @@
 from curl_cffi import requests
+from src.config.config import config
 
-from config import config
 class BaseAsyncSession(requests.AsyncSession):
     def __init__(self, proxy: str | None,
                  user_agent = config.DEFAULT_USER_AGENT,
