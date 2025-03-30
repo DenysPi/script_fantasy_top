@@ -7,6 +7,8 @@ Base = declarative_base()
 
 class Accounts(Base):
     __tablename__ = 'accounts'
+    id = Column(Integer, primary_key=True)
+    
     eth_pk = Column(Integer, primary_key=True)
     evm_address = Column(Text, unique=True)
     proxy = Column(Text)
