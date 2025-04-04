@@ -11,8 +11,8 @@ class Base:
             self.async_session = async_session
         else:
             BaseAsyncSession(
-                proxy=data.proxy,
-                user_agent=data.user_agent
+                proxy=self.data.proxy,
+                user_agent=self.data.user_agent
             )
         self.version = self.data.user_agent.split('Chrome/')[1].split('.')[0]
         self.platform = self.data.user_agent.split(' ')[1][1:].replace(';', '')

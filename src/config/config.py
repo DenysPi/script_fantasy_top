@@ -2,6 +2,8 @@ from pathlib import Path
 import sys
 import os
 
+from loguru import logger
+
 class Config:
     def __init__(self):
         
@@ -14,7 +16,10 @@ class Config:
             self.ROOT_DIR = Path(__file__).parent.parent.absolute()
             
         self.STATUS_DIR = os.path.join(self.ROOT_DIR, 'status')
+        self.LOG = os.path.join(self.STATUS_DIR, 'log.txt')
         self.ACCOUNTS_DB = os.path.join(self.STATUS_DIR, 'accounts.db')
+        
+        logger.add(self.LOG, format='{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}', level='DEBUG')
         
 config = Config()
 

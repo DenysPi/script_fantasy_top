@@ -13,8 +13,7 @@ from src.data.models import Network, Networks
 from src.data.models import Wallet, Contracts, Transactions
 
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+
 
 class ETHClient:
     network: Network
