@@ -61,7 +61,7 @@ class Networks:
         explorer='https://basescan.org/',
     )
 
-    # Testnets
+   
     Monad = Network(
         name='Monad Testnet',
         rpc= 'https://testnet-rpc.monad.xyz/',
@@ -144,6 +144,23 @@ class DefaultABIs:
             'stateMutability': 'nonpayable',
             'type': 'function'
         }]
+        
+    FeedContract = [
+        {
+            "inputs": [
+                {"internalType": "string", "name": "_candidateID", "type": "string"},
+                {"internalType": "uint256", "name": "_feedAmount", "type": "uint256"},
+                {"internalType": "string", "name": "_requestID", "type": "string"},
+                {"internalType": "string", "name": "_requestData", "type": "string"},
+                {"internalType": "bytes", "name": "_signature", "type": "bytes"},
+                {"internalType": "bytes", "name": "_integritySignature", "type": "bytes"},
+            ],
+            "name": "feed",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function",
+        }
+    ]
     
     
 class Wallet:
@@ -170,6 +187,18 @@ class Wallet:
         if not address:
             address = self.client.account.address
         return await self.client.w3.eth.get_transaction_count(address)
+    
+    
+class Contracts:
+    def __init__(self, client) -> None:
+        self.client = client
+
+    async def get_contract(self,
+                           contract_address: ChecksumAddress,
+                           abi: Union[list, dict] = DefaultABIs
+                           ) -> AsyncContract:
+        return self.client.w3.eth.contract(address=contract_address, abi=abi)
+
         
 class Contracts:
     def __init__(self, client) -> None:
@@ -179,7 +208,7 @@ class Contracts:
                           contract_address: ChecksumAddress,
                           abi: Union[list, dict] = DefaultABIs
                           ) -> AsyncContract:
-        return self.client.w3.eth.client(address = contract_address, abi=abi)
+        return self.client.w3.eth.contract(address = contract_address, abi=abi)
     
 
 

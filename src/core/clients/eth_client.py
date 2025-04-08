@@ -13,6 +13,9 @@ from src.data.models import Network, Networks
 from src.data.models import Wallet, Contracts, Transactions
 
 
+from src.config.config import logger
+
+
 
 
 class ETHClient:
@@ -23,7 +26,7 @@ class ETHClient:
     def __init__(
             self, 
             private_key: Optional[str] = None, 
-            network: Network = Networks.Ethereum,
+            network: Network = Networks.Monad,
             proxy: Optional[str] = None, 
             user_agent: Optional[str] = None,
         ) -> None:
@@ -59,7 +62,6 @@ class ETHClient:
         balance = await self.w3.eth.get_balance(self.account.address)
         print(f"Balance: {balance}")
         
-        # Calculate the nonce and fees
         nonce = await self.w3.eth.get_transaction_count(self.account.address)
         print(nonce)
         max_priority_fee_per_gas = await self.w3.eth.max_priority_fee

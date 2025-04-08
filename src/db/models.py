@@ -15,6 +15,9 @@ class Accounts(Base):
     email = Column(Text)
 
     user_agent = Column(Text)
+    
+    aircraft = Column(Boolean)
+    
     finished = Column(Boolean)
     
 
@@ -27,7 +30,7 @@ class Accounts(Base):
             user_agent: str,
     ) -> None:
         
-        self.evm_pk = eth_pk
+        self.eth_pk = eth_pk
         self.evm_address = evm_address
         self.proxy = proxy
         self.email = email

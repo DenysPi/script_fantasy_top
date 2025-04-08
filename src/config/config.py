@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 import os
-
+import asyncio
 from loguru import logger
 
 class Config:
@@ -19,6 +19,14 @@ class Config:
         self.LOG = os.path.join(self.STATUS_DIR, 'log.txt')
         self.ACCOUNTS_DB = os.path.join(self.STATUS_DIR, 'accounts.db')
         
+        
+        
+        
+        
+        self.completed_tasks = [0]
+        self.remaining_tasks = [0]
+        self.tasks_lock = asyncio.Semaphore(1)
+
         logger.add(self.LOG, format='{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}', level='DEBUG')
         
 config = Config()
